@@ -4,7 +4,7 @@ export async function POST() {
   const response = NextResponse.json({ success: true });
   response.cookies.set('token', '', {
     httpOnly: true,
-    secure: false, // Enable when HTTPS is configured
+    secure: true,
     sameSite: 'lax',
     maxAge: 0,
     path: '/',
