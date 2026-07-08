@@ -30,6 +30,8 @@ export async function POST(request) {
       const { getAudit, updateAudit } = require('/root/website-audit-portal/lib/db.js');
       const runAudit = require('/root/website-audit-portal/lib/orchestrator.js').default;
       const { generateReport } = require('/root/website-audit-portal/lib/reporter.js');
+      const { logAuditError, logAuditSuccess } = require('/root/website-audit-portal/lib/logger.js');
+      const checkConnectivity = require('/root/website-audit-portal/lib/connectivity.js').default;
 
       const auditId = ${audit.id};
       const TIMEOUT = 5 * 60 * 1000;
@@ -59,6 +61,19 @@ export async function POST(request) {
         }
 
         updateAudit(auditId, { status: 'running' });
+
+        // Pre-flight connectivity check — fail fast on unreachable sites
+        const connectivity = await checkConnectivity(audit.url);
+        if (!connectivity.reachable) {
+          const userMessage = connectivity.error || 'The website could not be reached.';
+          logAuditError(auditId, audit.url, userMessage, { phase: 'connectivity-check' });
+          updateAudit(auditId, {
+            status: 'error',
+            error: userMessage,
+          });
+          clearTimeout(timer);
+          process.exit(0);
+        }
 
         try {
           const results = await runAudit(audit.url, (tool) => {
