@@ -49,6 +49,7 @@ export default function AuditView({ audit: initialAudit }) {
 
   const results = audit.results || {};
   const report = results;
+  const showUnreachableBanner = report.allFailed && report.failedTools?.length === 4;
 
   return (
     <div className={styles.container}>
@@ -57,6 +58,15 @@ export default function AuditView({ audit: initialAudit }) {
 
       <a href="/" className={styles.backLink}>← Back to Home</a>
       <h1 className={styles.url}>{audit.url}</h1>
+
+      {showUnreachableBanner && (
+        <div className={styles.unreachableBanner}>
+          <div className={styles.unreachableIcon}>⚠️</div>
+          <h3>This website could not be reached</h3>
+          <p>The audit tools were unable to connect to <strong>{audit.url}</strong>.</p>
+          <p className={styles.unreachableHint}>Common causes: domain does not exist, DNS failure, server is down, or connection was refused.</p>
+        </div>
+      )}
 
       <div className={styles.scoreSection}>
         <ScoreRing score={report.overallScore || 0} grade={report.overallGrade || 'F'} />
