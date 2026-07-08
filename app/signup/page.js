@@ -10,7 +10,6 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +25,7 @@ export default function SignUp() {
       const data = await res.json();
 
       if (res.ok) {
-        router.push('/');
+        window.location.href = '/';
       } else {
         setError(data.error || 'Sign up failed');
       }
