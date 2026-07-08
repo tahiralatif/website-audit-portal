@@ -4,6 +4,9 @@ export async function POST(request) {
   try {
     const { getUserByToken, createAudit } = await import('@/lib/db');
     const { spawn } = await import('child_process');
+    const { checkRateLimit } = await import('@/lib/rate-limiter');
+    const { validateUrl } = await import('@/lib/ssrf');
+    const { logRateLimit } = await import('@/lib/logger');
 
     const token = request.cookies.get('token')?.value;
     if (!token) {
@@ -15,13 +18,35 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
 
-    const { url } = await request.json();
+    // Rate limiting: 5 per 10 min per user
+    const rateKey = `user:${user.id}`;
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    const rateCheck = checkRateLimit(rateKey);
+    if (!rateCheck.allowed) {
+      logRateLimit(rateKey, ip);
+      return NextResponse.json(
+        { error: `Rate limit exceeded. Try again in ${Math.ceil(rateCheck.retryAfterMs / 1000)}s.` },
+        { status: 429 }
+      );
+    }
 
+    const { url } = await request.json();
     if (!url) {
       return NextResponse.json({ error: 'URL is required' }, { status: 400 });
     }
 
-    new URL(url);
+    // Validate URL format
+    try {
+      new URL(url);
+    } catch {
+      return NextResponse.json({ error: 'Invalid URL format' }, { status: 400 });
+    }
+
+    // SSRF protection — block private/internal IPs
+    const ssrfCheck = await validateUrl(url);
+    if (!ssrfCheck.safe) {
+      return NextResponse.json({ error: ssrfCheck.error }, { status: 400 });
+    }
 
     const audit = createAudit(url, user.id);
 
@@ -54,6 +79,7 @@ export async function POST(request) {
       }, TIMEOUT);
 
       async function main() {
+        const startTime = Date.now();
         const audit = getAudit(auditId);
         if (!audit) {
           console.error('Audit not found:', auditId);
@@ -62,15 +88,12 @@ export async function POST(request) {
 
         updateAudit(auditId, { status: 'running' });
 
-        // Pre-flight connectivity check — fail fast on unreachable sites
+        // Pre-flight connectivity check
         const connectivity = await checkConnectivity(audit.url);
         if (!connectivity.reachable) {
           const userMessage = connectivity.error || 'The website could not be reached.';
           logAuditError(auditId, audit.url, userMessage, { phase: 'connectivity-check' });
-          updateAudit(auditId, {
-            status: 'error',
-            error: userMessage,
-          });
+          updateAudit(auditId, { status: 'error', error: userMessage });
           clearTimeout(timer);
           process.exit(0);
         }
@@ -81,17 +104,17 @@ export async function POST(request) {
           });
 
           const report = generateReport(results);
+          const durationMs = Date.now() - startTime;
 
+          logAuditSuccess(auditId, audit.url, durationMs);
           updateAudit(auditId, {
             status: 'completed',
             current_tool: null,
             results: report,
           });
         } catch (err) {
-          updateAudit(auditId, {
-            status: 'error',
-            error: err.message,
-          });
+          logAuditError(auditId, audit.url, err.message);
+          updateAudit(auditId, { status: 'error', error: err.message });
         }
 
         clearTimeout(timer);
