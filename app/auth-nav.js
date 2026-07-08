@@ -37,7 +37,6 @@ export default function AuthNav({ user: initialUser }) {
         ) : (
           <div className={styles.authLinks}>
             <a href="/signin" className={styles.link}>Sign In</a>
-            <a href="/signup" className={styles.btnSignUp}>Sign Up</a>
           </div>
         )}
       </div>

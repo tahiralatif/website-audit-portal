@@ -80,7 +80,6 @@ export default function Home() {
           </p>
           <div className={styles.authButtons}>
             <a href="/signin" className={styles.btnPrimary}>Sign In</a>
-            <a href="/signup" className={styles.btnSecondary}>Sign Up</a>
           </div>
         </div>
         <div className={styles.features}>
