@@ -92,24 +92,49 @@ export default function AuditView({ audit: initialAudit }) {
 }
 
 function ScoreRing({ score, grade }) {
-  const radius = 70;
+  const radius = 72;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
 
+  const gradeColors = {
+    A: '#22c55e',
+    B: '#06b6d4',
+    C: '#eab308',
+    D: '#f97316',
+    F: '#ef4444',
+  };
+
+  const ringColor = gradeColors[grade] || '#94a3b8';
+
   return (
     <div className={styles.scoreRing}>
-      <svg width="180" height="180">
+      <svg width="200" height="200" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#14b8a6" />
+            <stop offset="100%" stopColor={ringColor} />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        {/* Background track */}
         <circle
-          cx="90"
-          cy="90"
+          cx="100"
+          cy="100"
           r={radius}
           fill="none"
-          stroke="rgba(255,255,255,0.1)"
+          stroke="rgba(255,255,255,0.06)"
           strokeWidth="10"
         />
+        {/* Score arc */}
         <circle
-          cx="90"
-          cy="90"
+          cx="100"
+          cy="100"
           r={radius}
           fill="none"
           stroke="url(#scoreGradient)"
@@ -117,19 +142,15 @@ function ScoreRing({ score, grade }) {
           strokeDasharray={circumference}
           strokeDashoffset={offset}
           strokeLinecap="round"
-          transform="rotate(-90 90 90)"
+          transform="rotate(-90 100 100)"
           className={styles.scoreCircle}
+          filter="url(#glow)"
         />
-        <defs>
-          <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#14b8a6" />
-            <stop offset="100%" stopColor="#06b6d4" />
-          </linearGradient>
-        </defs>
-        <text x="90" y="85" textAnchor="middle" fill="#f1f5f9" fontSize="2.5rem" fontWeight="800">
+        {/* Score text */}
+        <text x="100" y="93" textAnchor="middle" fill="#f1f5f9" fontSize="2.8rem" fontWeight="800" fontFamily="system-ui, sans-serif">
           {score}
         </text>
-        <text x="90" y="115" textAnchor="middle" fill="#94a3b8" fontSize="1.2rem">
+        <text x="100" y="125" textAnchor="middle" fill="#94a3b8" fontSize="1.1rem" fontWeight="600" fontFamily="system-ui, sans-serif">
           Grade {grade}
         </text>
       </svg>
@@ -141,21 +162,30 @@ function ScoreBar({ label, score, grade }) {
   const colors = {
     A: '#22c55e',
     B: '#06b6d4',
-    C: '#14b8a6',
+    C: '#eab308',
     D: '#f97316',
     F: '#ef4444',
+  };
+
+  const categoryIcons = {
+    seo: '🔍',
+    performance: '⚡',
+    security: '🔒',
+    accessibility: '♿',
   };
 
   return (
     <div className={styles.scoreBar}>
       <div className={styles.scoreBarHeader}>
-        <span className={styles.scoreBarLabel}>{label}</span>
+        <span className={styles.scoreBarLabel}>
+          {categoryIcons[label] || ''} {label}
+        </span>
         <span className={styles.scoreBarGrade} style={{ color: colors[grade] }}>{score} ({grade})</span>
       </div>
       <div className={styles.scoreBarTrack}>
         <div
           className={styles.scoreBarFill}
-          style={{ width: `${score}%`, background: colors[grade] }}
+          style={{ width: `${score}%`, background: `linear-gradient(90deg, ${colors[grade]}88, ${colors[grade]})`, color: colors[grade] }}
         ></div>
       </div>
     </div>
@@ -170,6 +200,13 @@ function IssueCard({ suggestion }) {
     low: '#94a3b8',
   };
 
+  const impactIcons = {
+    critical: '🔴',
+    high: '🟠',
+    medium: '🔵',
+    low: '⚪',
+  };
+
   const categoryColors = {
     seo: '#14b8a6',
     performance: '#06b6d4',
@@ -182,20 +219,20 @@ function IssueCard({ suggestion }) {
       <div className={styles.issueHeader}>
         <span
           className={styles.categoryBadge}
-          style={{ background: `${categoryColors[suggestion.category]}20`, color: categoryColors[suggestion.category] }}
+          style={{ background: `${categoryColors[suggestion.category]}15`, color: categoryColors[suggestion.category], border: `1px solid ${categoryColors[suggestion.category]}25` }}
         >
           {suggestion.category}
         </span>
         <span
           className={styles.impactPill}
-          style={{ background: `${impactColors[suggestion.impact]}20`, color: impactColors[suggestion.impact] }}
+          style={{ background: `${impactColors[suggestion.impact]}15`, color: impactColors[suggestion.impact], border: `1px solid ${impactColors[suggestion.impact]}25` }}
         >
-          {suggestion.impact}
+          {impactIcons[suggestion.impact] || ''} {suggestion.impact}
         </span>
       </div>
       <p className={styles.issueMessage}>{suggestion.message}</p>
       <div className={styles.issueMeta}>
-        <span>Effort: {suggestion.effort}</span>
+        Effort: {suggestion.effort}
       </div>
     </div>
   );

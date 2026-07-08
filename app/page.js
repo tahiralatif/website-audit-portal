@@ -73,35 +73,61 @@ export default function Home() {
       <div className={styles.container}>
         <div className={styles.heroOrb1}></div>
         <div className={styles.heroOrb2}></div>
+        <div className={styles.heroOrb3}></div>
+
         <div className={styles.authPrompt}>
           <h1 className={styles.title}>Website Audit Portal</h1>
           <p className={styles.subtitle}>
-            Analyze your website for SEO, Performance, Security, and Accessibility issues
+            Analyze your website for SEO, Performance, Security, and Accessibility issues — get scored, graded, and actionable suggestions.
           </p>
           <div className={styles.authButtons}>
-            <a href="/signin" className={styles.btnPrimary} aria-label="Sign in to start auditing">Sign In</a>
+            <a href="/signin" className={styles.btnPrimary}>
+              Get Started
+            </a>
           </div>
         </div>
+
         <div className={styles.features}>
           <div className={styles.featureCard}>
             <span className={styles.featureIcon}>🔍</span>
             <h3>SEO Analysis</h3>
-            <p>Check meta tags, headings, sitemap, robots.txt, and more</p>
+            <p>Check meta tags, headings, sitemap, robots.txt, structured data, and more</p>
           </div>
           <div className={styles.featureCard}>
             <span className={styles.featureIcon}>⚡</span>
             <h3>Performance</h3>
-            <p>Lighthouse scores, FCP, LCP, CLS, and load times</p>
+            <p>Lighthouse scores, FCP, LCP, CLS, TTFB, and Core Web Vitals</p>
           </div>
           <div className={styles.featureCard}>
             <span className={styles.featureIcon}>🔒</span>
             <h3>Security</h3>
-            <p>TLS certificates, security headers, and vulnerability checks</p>
+            <p>TLS certificates, security headers, mixed content, and vulnerability checks</p>
           </div>
           <div className={styles.featureCard}>
             <span className={styles.featureIcon}>♿</span>
             <h3>Accessibility</h3>
-            <p>WCAG compliance, ARIA labels, and screen reader support</p>
+            <p>WCAG compliance, ARIA labels, color contrast, and screen reader support</p>
+          </div>
+        </div>
+
+        <div className={styles.howItWorks}>
+          <h2>How It Works</h2>
+          <div className={styles.steps}>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>1</div>
+              <h3>Enter URL</h3>
+              <p>Paste the website address you want to analyze</p>
+            </div>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>2</div>
+              <h3>Run Audit</h3>
+              <p>We scan across 4 categories with 20+ checks</p>
+            </div>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>3</div>
+              <h3>Get Results</h3>
+              <p>Review scores, grades, and actionable suggestions</p>
+            </div>
           </div>
         </div>
       </div>
@@ -115,7 +141,7 @@ export default function Home() {
       <div className={styles.mainContent}>
         <h1 className={styles.title}>Audit Your Website</h1>
         <p className={styles.subtitle}>
-          Enter a URL to run a comprehensive audit
+          Enter a URL to run a comprehensive analysis across SEO, Performance, Security, and Accessibility
         </p>
         <form onSubmit={handleSubmit} className={styles.auditForm}>
           <label className={styles.srLabel}>
@@ -135,9 +161,14 @@ export default function Home() {
             className={styles.btnPrimary}
             disabled={submitting || !url}
           >
-            {submitting ? 'Starting...' : 'Run Audit'}
+            {submitting ? (
+              <span>Starting...</span>
+            ) : (
+              <span>Run Audit →</span>
+            )}
           </button>
         </form>
+
         {recentAudits.length > 0 && (
           <div className={styles.recentSection}>
             <h2>Recent Audits</h2>

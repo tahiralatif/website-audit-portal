@@ -1,109 +1,148 @@
+/* ===== CONTAINER ===== */
 .container {
   min-height: 100vh;
   padding: 2rem;
   position: relative;
   overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
+/* ===== ORBS ===== */
 .heroOrb1 {
   position: absolute;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.2), transparent 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.15), transparent 70%);
   top: -80px;
   left: -80px;
   border-radius: 50%;
   pointer-events: none;
+  filter: blur(40px);
 }
 
 .heroOrb2 {
   position: absolute;
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.18), transparent 70%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12), transparent 70%);
   bottom: -60px;
   right: -60px;
   border-radius: 50%;
   pointer-events: none;
+  filter: blur(40px);
 }
 
+/* ===== BACK LINK ===== */
 .backLink {
   color: #06b6d4;
   text-decoration: none;
   font-size: 0.9rem;
-  display: inline-block;
-  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
   z-index: 1;
   position: relative;
+  font-weight: 500;
+  transition: all 0.25s;
+  padding: 0.3rem 0;
 }
 
 .backLink:hover {
-  text-decoration: underline;
+  color: #14b8a6;
+  transform: translateX(-3px);
 }
 
+/* ===== URL TITLE ===== */
 .url {
   color: #e2e8f0;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 800;
   word-break: break-all;
   margin-bottom: 2rem;
   z-index: 1;
   position: relative;
+  background: linear-gradient(135deg, #f1f5f9, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.3;
 }
 
+/* ===== SCORE SECTION ===== */
 .scoreSection {
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: flex-start;
   flex-wrap: wrap;
   z-index: 1;
   position: relative;
   margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(6, 182, 212, 0.02);
+  border: 1px solid rgba(6, 182, 212, 0.08);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(16px);
+  animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scoreRing {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .scoreCircle {
-  transition: stroke-dashoffset 1s ease-out;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .categoryScores {
   flex: 1;
-  min-width: 250px;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
+/* ===== SCORE BAR ===== */
 .scoreBar {
-  background: rgba(6, 182, 212, 0.04);
-  border-radius: 0.75rem;
-  padding: 1rem;
+  background: rgba(6, 182, 212, 0.03);
+  border-radius: 0.85rem;
+  padding: 1rem 1.25rem;
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.08);
+  transition: all 0.3s;
+}
+
+.scoreBar:hover {
+  border-color: rgba(6, 182, 212, 0.2);
+  background: rgba(6, 182, 212, 0.05);
 }
 
 .scoreBarHeader {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.65rem;
 }
 
 .scoreBarLabel {
   color: #e2e8f0;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: capitalize;
+  font-size: 0.95rem;
 }
 
 .scoreBarGrade {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.9rem;
+  letter-spacing: 0.02em;
 }
 
 .scoreBarTrack {
   height: 8px;
-  background: rgba(6, 182, 212, 0.1);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -111,120 +150,198 @@
 .scoreBarFill {
   height: 100%;
   border-radius: 4px;
-  transition: width 1s ease-out;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
+.scoreBarFill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: inherit;
+  border-radius: 2px;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* ===== SUGGESTIONS ===== */
 .suggestionsSection {
   z-index: 1;
   position: relative;
+  animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
 }
 
 .suggestionsSection h2 {
   color: #e2e8f0;
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.suggestionsSection h2::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 18px;
+  background: linear-gradient(to bottom, #14b8a6, #06b6d4);
+  border-radius: 2px;
 }
 
 .suggestionList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 1rem;
 }
 
+/* ===== ISSUE CARD ===== */
 .issueCard {
-  background: rgba(6, 182, 212, 0.04);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(6, 182, 212, 0.1);
-  border-radius: 1rem;
-  padding: 1.25rem;
-  transition: border-color 0.2s;
+  background: rgba(6, 182, 212, 0.03);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(6, 182, 212, 0.08);
+  border-radius: 1.15rem;
+  padding: 1.35rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.issueCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(6, 182, 212, 0.4), rgba(6, 182, 212, 0));
+  border-radius: 0 2px 2px 0;
+  transition: background 0.3s;
 }
 
 .issueCard:hover {
-  border-color: rgba(6, 182, 212, 0.3);
+  border-color: rgba(6, 182, 212, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.issueCard:hover::before {
+  background: linear-gradient(to bottom, rgba(6, 182, 212, 0.6), rgba(6, 182, 212, 0));
 }
 
 .issueHeader {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .categoryBadge {
-  padding: 0.2rem 0.6rem;
-  border-radius: 1rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.5rem;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: capitalize;
+  letter-spacing: 0.02em;
 }
 
 .impactPill {
-  padding: 0.2rem 0.6rem;
-  border-radius: 1rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.5rem;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: capitalize;
+  letter-spacing: 0.02em;
 }
 
 .issueMessage {
   color: #e2e8f0;
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.55;
   margin-bottom: 0.75rem;
 }
 
 .issueMeta {
   color: #64748b;
   font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
+.issueMeta::before {
+  content: '⚙';
+  font-size: 0.7rem;
+}
+
+/* ===== ERROR / LOADING CARDS ===== */
 .errorCard,
 .loadingCard {
   text-align: center;
   padding: 4rem 2rem;
-  background: rgba(6, 182, 212, 0.04);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(6, 182, 212, 0.12);
-  border-radius: 1.5rem;
+  background: rgba(6, 182, 212, 0.03);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(6, 182, 212, 0.1);
+  border-radius: 1.75rem;
   max-width: 500px;
   margin: 0 auto;
+  box-shadow:
+    0 0 60px rgba(6, 182, 212, 0.05),
+    0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .errorCard h2,
 .loadingCard h2 {
   color: #e2e8f0;
   margin-bottom: 1rem;
+  font-weight: 800;
 }
 
 .errorCard p {
   color: #94a3b8;
   margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
+/* ===== SPINNER ===== */
 .spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid rgba(6, 182, 212, 0.15);
+  width: 52px;
+  height: 52px;
+  border: 4px solid rgba(6, 182, 212, 0.1);
   border-top-color: #06b6d4;
   border-radius: 50%;
   margin: 0 auto 1.5rem;
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s linear infinite;
+  position: relative;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.spinner::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 3px solid rgba(20, 184, 166, 0.1);
+  border-bottom-color: #14b8a6;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite reverse;
 }
 
+/* ===== UNREACHABLE BANNER ===== */
 .unreachableBanner {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  border-radius: 1rem;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 1.25rem;
   padding: 2rem;
   text-align: center;
   z-index: 1;
   position: relative;
   margin-bottom: 2rem;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  animation: fade-in-up 0.5s ease;
 }
 
 .unreachableIcon {
@@ -234,18 +351,40 @@
 
 .unreachableBanner h3 {
   color: #fca5a5;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   margin-bottom: 0.5rem;
+  font-weight: 700;
 }
 
 .unreachableBanner p {
   color: #94a3b8;
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
+  line-height: 1.5;
 }
 
 .unreachableHint {
   color: #64748b !important;
   font-size: 0.85rem !important;
   font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .scoreSection {
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .suggestionList {
+    grid-template-columns: 1fr;
+  }
+
+  .url {
+    font-size: 1.2rem;
+  }
 }
