@@ -14,14 +14,14 @@ body {
 }
 
 body {
-  background: linear-gradient(180deg, #0f172a 0%, #134e4a 50%, #0f172a 100%);
+  background: #080c14;
   background-attachment: fixed;
-  color: #f1f5f9;
+  color: #e2e8f0;
   min-height: 100vh;
 }
 
 ::selection {
-  background: #14b8a6;
+  background: #06b6d4;
   color: #fff;
 }
 

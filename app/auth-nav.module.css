@@ -6,17 +6,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 2rem;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(8, 12, 20, 0.85);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.1);
 }
 
 .logo {
-  color: #f1f5f9;
+  color: #e2e8f0;
   font-size: 1.2rem;
   font-weight: 800;
   text-decoration: none;
-  background: linear-gradient(135deg, #14b8a6, #f59e0b);
+  background: linear-gradient(135deg, #14b8a6, #06b6d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -35,7 +35,7 @@
 }
 
 .link:hover {
-  color: #f1f5f9;
+  color: #e2e8f0;
 }
 
 .userSection {
@@ -45,24 +45,24 @@
 }
 
 .userName {
-  color: #14b8a6;
+  color: #06b6d4;
   font-weight: 600;
   font-size: 0.9rem;
 }
 
 .signOutBtn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
+  background: rgba(6, 182, 212, 0.1);
+  color: #e2e8f0;
   padding: 0.4rem 0.8rem;
   border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.2);
   cursor: pointer;
   font-size: 0.85rem;
   transition: background 0.2s;
 }
 
 .signOutBtn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(6, 182, 212, 0.2);
 }
 
 .authLinks {
@@ -72,7 +72,7 @@
 }
 
 .btnSignUp {
-  background: linear-gradient(135deg, #14b8a6, #f59e0b);
+  background: linear-gradient(135deg, #14b8a6, #06b6d4);
   color: #fff;
   padding: 0.4rem 0.8rem;
   border-radius: 0.5rem;

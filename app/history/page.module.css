@@ -6,7 +6,7 @@
 }
 
 .title {
-  color: #f1f5f9;
+  color: #e2e8f0;
   font-size: 1.8rem;
   margin-bottom: 2rem;
 }
@@ -24,9 +24,9 @@
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(6, 182, 212, 0.04);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.1);
   border-radius: 1rem;
   padding: 1.25rem;
   text-decoration: none;
@@ -35,7 +35,7 @@
 
 .card:hover {
   transform: translateY(-2px);
-  border-color: rgba(20, 184, 166, 0.3);
+  border-color: rgba(6, 182, 212, 0.3);
 }
 
 .cardHeader {
@@ -47,7 +47,7 @@
 }
 
 .url {
-  color: #f59e0b;
+  color: #06b6d4;
   font-size: 0.95rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -64,8 +64,8 @@
 
 .badge.pending,
 .badge.running {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
+  background: rgba(6, 182, 212, 0.15);
+  color: #22d3ee;
 }
 
 .badge.completed {

@@ -13,7 +13,7 @@
   position: absolute;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.3), transparent 70%);
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.25), transparent 70%);
   top: -100px;
   right: -100px;
   border-radius: 50%;
@@ -25,7 +25,7 @@
   position: absolute;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
   bottom: -50px;
   left: -50px;
   border-radius: 50%;
@@ -39,7 +39,7 @@
 }
 
 .loading {
-  color: #f1f5f9;
+  color: #e2e8f0;
   font-size: 1.2rem;
 }
 
@@ -47,16 +47,16 @@
   text-align: center;
   z-index: 1;
   padding: 3rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(6, 182, 212, 0.04);
   backdrop-filter: blur(20px);
   border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.12);
 }
 
 .title {
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #14b8a6, #f59e0b);
+  background: linear-gradient(135deg, #14b8a6, #06b6d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
@@ -76,7 +76,7 @@
 }
 
 .btnPrimary {
-  background: linear-gradient(135deg, #14b8a6, #f59e0b);
+  background: linear-gradient(135deg, #14b8a6, #06b6d4);
   color: #fff;
   padding: 0.75rem 2rem;
   border-radius: 0.75rem;
@@ -85,11 +85,12 @@
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, box-shadow 0.2s;
 }
 
 .btnPrimary:hover {
   opacity: 0.9;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
 }
 
 .btnPrimary:disabled {
@@ -98,18 +99,18 @@
 }
 
 .btnSecondary {
-  background: rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
+  background: rgba(6, 182, 212, 0.08);
+  color: #e2e8f0;
   padding: 0.75rem 2rem;
   border-radius: 0.75rem;
   font-weight: 600;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(6, 182, 212, 0.2);
   transition: background 0.2s;
 }
 
 .btnSecondary:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(6, 182, 212, 0.15);
 }
 
 .features {
@@ -123,9 +124,9 @@
 }
 
 .featureCard {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(6, 182, 212, 0.04);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.1);
   border-radius: 1rem;
   padding: 1.5rem;
   text-align: center;
@@ -134,7 +135,7 @@
 
 .featureCard:hover {
   transform: translateY(-4px);
-  border-color: rgba(20, 184, 166, 0.3);
+  border-color: rgba(6, 182, 212, 0.3);
 }
 
 .featureIcon {
@@ -144,7 +145,7 @@
 }
 
 .featureCard h3 {
-  color: #f1f5f9;
+  color: #e2e8f0;
   font-size: 1rem;
   margin-bottom: 0.5rem;
 }
@@ -172,21 +173,21 @@
   flex: 1;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  color: #f1f5f9;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  background: rgba(6, 182, 212, 0.04);
+  color: #e2e8f0;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s;
 }
 
 .urlInput:focus {
-  border-color: #14b8a6;
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2);
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
 }
 
 .urlInput::placeholder {
-  color: #64748b;
+  color: #475569;
 }
 
 .recentSection {
@@ -196,7 +197,7 @@
 }
 
 .recentSection h2 {
-  color: #f1f5f9;
+  color: #e2e8f0;
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
@@ -212,19 +213,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(6, 182, 212, 0.04);
   border-radius: 0.5rem;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(6, 182, 212, 0.08);
   transition: border-color 0.2s;
 }
 
 .recentItem:hover {
-  border-color: rgba(20, 184, 166, 0.3);
+  border-color: rgba(6, 182, 212, 0.3);
 }
 
 .recentUrl {
-  color: #f59e0b;
+  color: #06b6d4;
   font-size: 0.9rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -241,8 +242,8 @@
 
 .statusBadge.pending,
 .statusBadge.running {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
+  background: rgba(6, 182, 212, 0.15);
+  color: #22d3ee;
 }
 
 .statusBadge.completed {

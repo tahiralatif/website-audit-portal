@@ -123,7 +123,7 @@ function ScoreRing({ score, grade }) {
         <defs>
           <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#14b8a6" />
-            <stop offset="100%" stopColor="#f59e0b" />
+            <stop offset="100%" stopColor="#06b6d4" />
           </linearGradient>
         </defs>
         <text x="90" y="85" textAnchor="middle" fill="#f1f5f9" fontSize="2.5rem" fontWeight="800">
@@ -140,8 +140,8 @@ function ScoreRing({ score, grade }) {
 function ScoreBar({ label, score, grade }) {
   const colors = {
     A: '#22c55e',
-    B: '#14b8a6',
-    C: '#f59e0b',
+    B: '#06b6d4',
+    C: '#14b8a6',
     D: '#f97316',
     F: '#ef4444',
   };
@@ -166,13 +166,13 @@ function IssueCard({ suggestion }) {
   const impactColors = {
     critical: '#ef4444',
     high: '#f97316',
-    medium: '#f59e0b',
+    medium: '#06b6d4',
     low: '#94a3b8',
   };
 
   const categoryColors = {
     seo: '#14b8a6',
-    performance: '#f59e0b',
+    performance: '#06b6d4',
     security: '#ef4444',
     accessibility: '#8b5cf6',
   };
