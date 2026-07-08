@@ -38,7 +38,7 @@ export async function POST(request) {
 
     response.cookies.set('token', newToken, {
       httpOnly: true,
-      secure: false, // Enable when HTTPS is configured
+      secure: true,
       sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 30,
       path: '/',
