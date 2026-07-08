@@ -64,9 +64,11 @@ export default function SignIn() {
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
-        <p className={styles.link}>
-          Don&apos;t have an account? <a href="/signup">Sign Up</a>
-        </p>
+        <div className={styles.demoHint}>
+          <span className={styles.demoLabel}>Demo Account</span>
+          <span>Email: demo@auditportal.com</span>
+          <span>Password: Demo@2026</span>
+        </div>
       </div>
     </div>
   );
