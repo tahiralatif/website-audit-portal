@@ -39,23 +39,31 @@ export default function SignIn() {
       <div className={styles.card}>
         <h1 className={styles.title}>Sign In</h1>
         {error && <div className={styles.error}>{error}</div>}
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className={styles.input}
-            required
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className={styles.input}
-            required
-          />
+        <form onSubmit={handleSubmit} className={styles.form} aria-label="Sign in form">
+          <label className={styles.srLabel}>
+            <span className={styles.labelText}>Email</span>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className={styles.input}
+              required
+              aria-label="Email address"
+            />
+          </label>
+          <label className={styles.srLabel}>
+            <span className={styles.labelText}>Password</span>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className={styles.input}
+              required
+              aria-label="Password"
+            />
+          </label>
           <button
             type="submit"
             className={styles.btnPrimary}

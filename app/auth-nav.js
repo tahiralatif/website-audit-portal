@@ -23,20 +23,20 @@ export default function AuthNav({ user: initialUser }) {
   };
 
   return (
-    <nav className={styles.nav}>
-      <a href="/" className={styles.logo}>Audit Portal</a>
+    <nav className={styles.nav} role="navigation" aria-label="Main navigation">
+      <a href="/" className={styles.logo} aria-label="Audit Portal - Home">Audit Portal</a>
       <div className={styles.links}>
-        <a href="/history" className={styles.link}>History</a>
+        <a href="/history" className={styles.link} aria-label="View audit history">History</a>
         {user ? (
           <div className={styles.userSection}>
             <span className={styles.userName}>{user.name}</span>
-            <button onClick={handleSignOut} className={styles.signOutBtn}>
+            <button onClick={handleSignOut} className={styles.signOutBtn} aria-label="Sign out of your account">
               Sign Out
             </button>
           </div>
         ) : (
           <div className={styles.authLinks}>
-            <a href="/signin" className={styles.link}>Sign In</a>
+            <a href="/signin" className={styles.link} aria-label="Sign in to your account">Sign In</a>
           </div>
         )}
       </div>

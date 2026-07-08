@@ -38,7 +38,7 @@ export default function AuditView({ audit: initialAudit }) {
   if (audit.status !== 'completed') {
     return (
       <div className={styles.container}>
-        <div className={styles.loadingCard}>
+        <div className={styles.loadingCard} role="status" aria-live="polite">
           <div className={styles.spinner}></div>
           <h2>Auditing {audit.url}</h2>
           <p>{audit.current_tool ? `Running ${audit.current_tool} analysis...` : 'Starting audit...'}</p>
@@ -78,7 +78,7 @@ export default function AuditView({ audit: initialAudit }) {
       </div>
 
       {report.suggestions && report.suggestions.length > 0 && (
-        <div className={styles.suggestionsSection}>
+        <div className={styles.suggestionsSection} aria-label="Audit suggestions">
           <h2>Suggestions ({report.suggestions.length})</h2>
           <div className={styles.suggestionList}>
             {report.suggestions.map((s, i) => (

@@ -79,7 +79,7 @@ export default function Home() {
             Analyze your website for SEO, Performance, Security, and Accessibility issues
           </p>
           <div className={styles.authButtons}>
-            <a href="/signin" className={styles.btnPrimary}>Sign In</a>
+            <a href="/signin" className={styles.btnPrimary} aria-label="Sign in to start auditing">Sign In</a>
           </div>
         </div>
         <div className={styles.features}>
@@ -118,14 +118,18 @@ export default function Home() {
           Enter a URL to run a comprehensive audit
         </p>
         <form onSubmit={handleSubmit} className={styles.auditForm}>
-          <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="https://example.com"
-            className={styles.urlInput}
-            disabled={submitting}
-          />
+          <label className={styles.srLabel}>
+            <span className={styles.labelText}>Website URL</span>
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="https://example.com"
+              className={styles.urlInput}
+              disabled={submitting}
+              aria-label="Website URL to audit"
+            />
+          </label>
           <button
             type="submit"
             className={styles.btnPrimary}
