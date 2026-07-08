@@ -1,0 +1,9 @@
+node_modules/
+.next/
+audit.db
+audit.db-shm
+audit.db-wal
+.env
+.env.local
+.DS_Store
+*.log

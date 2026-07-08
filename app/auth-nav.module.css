@@ -1,0 +1,82 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+  color: #f1f5f9;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-decoration: none;
+  background: linear-gradient(135deg, #14b8a6, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #f1f5f9;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userName {
+  color: #14b8a6;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.signOutBtn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.signOutBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.authLinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btnSignUp {
+  background: linear-gradient(135deg, #14b8a6, #f59e0b);
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
