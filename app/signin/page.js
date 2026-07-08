@@ -9,7 +9,6 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +24,7 @@ export default function SignIn() {
       const data = await res.json();
 
       if (res.ok) {
-        router.push('/');
+        window.location.href = '/';
       } else {
         setError(data.error || 'Sign in failed');
       }
