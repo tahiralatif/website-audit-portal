@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { logServerError } from '@/lib/logger';
 
 export async function POST(request) {
   try {
@@ -46,6 +47,7 @@ export async function POST(request) {
 
     return response;
   } catch (err) {
+    logServerError('POST /api/auth/signup', err.message);
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
