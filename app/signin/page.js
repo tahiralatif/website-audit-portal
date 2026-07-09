@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
 export default function SignIn() {
@@ -21,62 +20,71 @@ export default function SignIn() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await res.json();
 
-      if (res.ok) {
-        window.location.href = '/';
-      } else {
+      if (!res.ok) {
         setError(data.error || 'Sign in failed');
+        setLoading(false);
+        return;
       }
+
+      window.location.href = '/';
     } catch (err) {
-      setError('Network error');
+      setError('Network error. Please try again.');
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
+      <div className={styles.heroOrb1}></div>
+      <div className={styles.heroOrb2}></div>
+      <div className={styles.authCard}>
         <h1 className={styles.title}>Sign In</h1>
-        {error && <div className={styles.error}>{error}</div>}
-        <form onSubmit={handleSubmit} className={styles.form} aria-label="Sign in form">
-          <label className={styles.srLabel}>
-            <span className={styles.labelText}>Email</span>
+        <p className={styles.subtitle}>Access your audit dashboard</p>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <label className={styles.field}>
+            <span className={styles.label}>Email</span>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder="you@example.com"
               className={styles.input}
               required
               aria-label="Email address"
             />
           </label>
-          <label className={styles.srLabel}>
-            <span className={styles.labelText}>Password</span>
+
+          <label className={styles.field}>
+            <span className={styles.label}>Password</span>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder="••••••••"
               className={styles.input}
               required
               aria-label="Password"
             />
           </label>
+
+          {error && <div className={styles.error}>{error}</div>}
+
           <button
             type="submit"
-            className={styles.btnPrimary}
+            className={styles.submitBtn}
             disabled={loading}
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
-        <div className={styles.demoHint}>
-          <span className={styles.demoLabel}>Demo Account</span>
-          <span>Email: demo@auditportal.com</span>
-          <span>Password: Demo@2026</span>
-        </div>
+
+        <p className={styles.footer}>
+          Don't have an account? <a href="/signup" className={styles.link}>Sign Up</a>
+        </p>
       </div>
     </div>
   );
