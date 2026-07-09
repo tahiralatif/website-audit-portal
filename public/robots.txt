@@ -1,5 +1,1 @@
-User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /audit/
-Sitemap: https://server.14.jugaar.ai/sitemap.xml
+__DELETE__

@@ -1,1 +1,1 @@
-@AGENTS.md
+__DELETE__
