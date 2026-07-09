@@ -57,11 +57,11 @@ export async function POST(request) {
     const audit = createAudit(validation.url, user.id);
 
     const workerScript = `
-      const { getAudit, updateAudit } = require('/root/website-audit-portal/lib/db.js');
-      const runAudit = require('/root/website-audit-portal/lib/orchestrator.js').default;
-      const { generateReport } = require('/root/website-audit-portal/lib/reporter.js');
-      const { logAuditError, logAuditSuccess } = require('/root/website-audit-portal/lib/logger.js');
-      const checkConnectivity = require('/root/website-audit-portal/lib/connectivity.js').default;
+      const { getAudit, updateAudit } = require('${process.cwd()}/lib/db.js');
+      const runAudit = require('${process.cwd()}/lib/orchestrator.js').default;
+      const { generateReport } = require('${process.cwd()}/lib/reporter.js');
+      const { logAuditError, logAuditSuccess } = require('${process.cwd()}/lib/logger.js');
+      const checkConnectivity = require('${process.cwd()}/lib/connectivity.js').default;
 
       const auditId = ${audit.id};
       const TIMEOUT = 5 * 60 * 1000;
