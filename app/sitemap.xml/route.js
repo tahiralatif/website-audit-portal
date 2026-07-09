@@ -6,7 +6,6 @@ export async function GET() {
   const urls = [
     { loc: baseUrl, priority: '1.0', changefreq: 'weekly' },
     { loc: `${baseUrl}/signin`, priority: '0.8', changefreq: 'monthly' },
-    { loc: `${baseUrl}/signup`, priority: '0.8', changefreq: 'monthly' },
     { loc: `${baseUrl}/history`, priority: '0.6', changefreq: 'daily' },
   ];
 

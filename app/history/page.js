@@ -1,10 +1,18 @@
 import styles from './page.module.css';
+import { cookies } from 'next/headers';
 
 export default async function HistoryPage() {
   let audits = [];
   try {
-    const { listAudits } = await import('@/lib/db');
-    audits = listAudits(50);
+    const { listAudits, getUserByToken } = await import('@/lib/db');
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
+    let userId = null;
+    if (token) {
+      const user = getUserByToken(token);
+      if (user) userId = user.id;
+    }
+    audits = listAudits(50, userId);
   } catch (e) {
     // DB not available in this context
   }
